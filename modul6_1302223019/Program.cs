@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace modul6_1302223019
@@ -13,7 +14,7 @@ namespace modul6_1302223019
         {
             Random random = new Random();
             this.id = random.Next(10000, 100000);
-            Debug.Assert(username.Length <= 5 && username != null, "title tidak dapat dimasukkan");
+            Debug.Assert(username.Length <= 100 && username != null, "username tidak dapat dimasukkan");
             this.username = checked(username);
             this.id = 0;
         }
@@ -35,10 +36,13 @@ namespace modul6_1302223019
 
         public void PrintAllVideoPlayCount()
         {
-            Console.WriteLine("Informasi Video");
-            Console.WriteLine("User         : " + this.username);
-            Console.WriteLine("Video 1         : " + this.uploadedVideos);
-            Console.WriteLine("Video 2         : " + this.uploadedVideos);
+            for (int i = 0;i < uploadedVideos.Count; i++)
+            {
+                Console.WriteLine("Informasi Video");
+                Console.WriteLine("User         : " + this.username);
+                Console.WriteLine("Video 1         : " + this.uploadedVideos);
+                Console.WriteLine("Video 2         : " + this.uploadedVideos);
+            }
         }
     }
     public class SayaTubeVideo
@@ -51,13 +55,13 @@ namespace modul6_1302223019
         {
             Random random = new Random();
             this.id = random.Next(10000, 100000);
-            Debug.Assert(title.Length <= 5 && title != null, "title tidak dapat dimasukkan");
+            Debug.Assert(title.Length <= 200 && title != null, "title tidak dapat dimasukkan");
             this.title = checked(title);
             this.playCount = 0;
         }
         public void IncreasePlayCount(int playCount)
         {
-            Debug.Assert(playCount < 10000000, "play count tidak dapat ditambahkan karena lebih dari 10.000.000");
+            Debug.Assert(playCount < 25000000, "play count tidak dapat ditambahkan karena lebih dari 25.000.000");
             Debug.Assert(this.playCount + playCount < int.MaxValue, "jumlah play count melebihi batas");
             this.playCount = checked(this.playCount + playCount);
         }
